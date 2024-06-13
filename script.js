@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const fetchCachedNotes = () => {
         for (let i = 0; i < localStorage.length; i++) {
-            const cachedNote = localStorage.getItem(`text${i}`);
+            const cachedNote = localStorage.getItem(`${i}`);
             addNoteToScreen([cachedNote]);
         }
     }
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const divs = document.getElementsByClassName("note-container");
         for (let i = 0; i < divs.length; i++) {
             const test = divs[i].firstChild.textContent;
-            localStorage.setItem(`text${[i]}`, test);
+            localStorage.setItem(`${[i]}`, test);
         }
         console.log(localStorage);
     };
@@ -52,7 +52,18 @@ document.addEventListener("DOMContentLoaded", () => {
    notes.addEventListener("click", (event) => {
     event.preventDefault();
     if (event.target.classList.contains("delete-btn")) {
-        event.target.parentElement.parentElement.remove();
+        const deletedNote = event.target.parentElement.parentElement;
+        const deletedNoteText = deletedNote.firstChild.textContent;
+        for (let i = 0; i < localStorage.length;i++) {
+            let key = localStorage.key[i];
+            let storedValue = localStorage.getItem(key);
+            if (storedValue === key) {
+                localStorage.removeItem(key);
+            }
+        }
+        
+        deletedNote.remove();
+        
     } else if (event.target.classList.contains("edit-btn")) {
         const noteTextElement = event.target.parentElement.previousElementSibling;
         console.log(noteTextElement);
