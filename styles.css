@@ -1,0 +1,94 @@
+:root {
+    --background: rgb(0, 0, 0);
+    --text: white;
+    --note-text: black;
+}
+
+* {
+    font-family: sans-serif;
+    background-color: var(--background);
+}
+
+h1 {
+    text-align: center;
+    text-decoration: underline;
+    color: var(--text);
+}
+
+#add {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+#add-note {
+    color: var(--text);
+}
+
+#add-btn {
+    color: var(--text);
+}
+
+#notes {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;;
+}
+
+@keyframes notes {
+    0% {
+        opacity: 0;
+        transform: translatex(-100px);
+        filter: blur(3px)
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.note-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--text);
+    border: 2px solid white;
+    border-radius: 10px;
+    margin: 0px 200px 0px 200px;
+    background-color: var(--background);
+    padding-right: 20px;
+    padding-left: 40px;
+    animation-name: notes;
+    animation-duration: 1s;
+}
+
+#note-text {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.delete-btn {
+    border-radius: 10px;
+    color: var(--text);
+    background-color: var(--background);
+    border: 1px solid white;
+    height: 30px;
+    align-self: center;
+}
+
+.edit-btn {
+    border-radius: 10px;
+    color: var(--text);
+    background-color: var(--background);
+    border: 1px solid white;
+    height: 30px;
+    align-self: center;
+}
