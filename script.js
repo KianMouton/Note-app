@@ -2,15 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const addNote = document.getElementById("add-note");
     const addBtn = document.getElementById("add-btn");
     const notes = document.getElementById("notes");
-
-    const addNotes = () => {
-        if (addNote.value === "") {
-            alert("please enter a note");
-            return;
-        }
+    const clearStorageBtn = document.getElementById("clear-storage");
+    
+    const addNoteToScreen = (NoteText) => {
         const createDiv = document.createElement("div");
         createDiv.classList.add("note-container");
-        createDiv.innerHTML = `<p id="note-text">${addNote.value}</p>
+        createDiv.innerHTML = `<p id="note-text">${NoteText}</p>
                            <div class="buttons"> 
                            <button class="delete-btn">delete</button>
                            <button class="edit-btn">edit</button>
@@ -18,9 +15,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
         notes.appendChild(createDiv);
         addNote.value = "";
-    };
+        addNote.focus();
+    }
 
+    const fetchCachedNotes = () => {
+        for (let i = 0; i < localStorage.length; i++) {
+            const cachedNote = localStorage.getItem(`text${i}`);
+            addNoteToScreen([cachedNote]);
+        }
+    }
+
+    fetchCachedNotes();
+
+    const addNotes = () => {
+        if (addNote.value === "") {
+            alert("please enter a note");
+            return;
+        }
+        addNoteToScreen(addNote.value);
+
+        const divs = document.getElementsByClassName("note-container");
+        for (let i = 0; i < divs.length; i++) {
+            const test = divs[i].firstChild.textContent;
+            localStorage.setItem(`text${[i]}`, test);
+        }
+        console.log(localStorage);
+    };
+    
     addBtn.addEventListener("click", addNotes);
+    addNote.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+            addNotes();
+        }
+    });
 
    notes.addEventListener("click", (event) => {
     event.preventDefault();
@@ -34,6 +61,15 @@ document.addEventListener("DOMContentLoaded", () => {
             noteTextElement.textContent = newNoteText;
         }
     }
-   } );
+   });
 
+   clearStorageBtn.addEventListener("click", () => {
+    localStorage.clear();
+    // using querySelectorAll here because it updates every time
+    // that a new note is added
+    const notes = document.querySelectorAll(".note-container");
+    for (let i = 0; i < notes.length; i++) {
+        notes[i].remove();
+    };
+   });
 });
