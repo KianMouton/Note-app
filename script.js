@@ -55,12 +55,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const deletedNote = event.target.parentElement.parentElement;
         const deletedNoteText = deletedNote.firstChild.textContent;
         for (let i = 0; i < localStorage.length;i++) {
-            let key = localStorage.key[i];
+            let key = localStorage.key(i);
             let storedValue = localStorage.getItem(key);
-            if (storedValue === key) {
+            if (localStorage.hasOwnProperty(key) && storedValue === deletedNoteText) {
                 localStorage.removeItem(key);
             }
-        }
+        };
         
         deletedNote.remove();
         
