@@ -129,3 +129,63 @@ h1 {
     background-color: var(--text);
     color: var(--background);
 }
+
+@media (min-width: 1000px) {
+    .note-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 10px;
+        color: var(--text);
+        border: 2px solid white;
+        border-radius: 10px;
+        margin: 0px 300px 0px 300px;
+        background-color: var(--background);
+        padding-right: 20px;
+        padding-left: 40px;
+        animation-name: notes;
+        animation-duration: 1s;
+    }
+}
+
+@media (max-width: 800px) {
+    .note-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 10px;
+        color: var(--text);
+        border: 2px solid white;
+        border-radius: 10px;
+        margin: 0px 100px 0px 100px;
+        background-color: var(--background);
+        padding-right: 20px;
+        padding-left: 40px;
+        animation-name: notes;
+        animation-duration: 1s;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        text-align: center;
+        text-decoration: underline;
+        color: var(--text);
+    }
+
+    .note-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 10px;
+        color: var(--text);
+        border: 2px solid white;
+        border-radius: 10px;
+        margin: 0px 50px 0px 50px;
+        background-color: var(--background);
+        padding-right: 20px;
+        padding-left: 40px;
+        animation-name: notes;
+        animation-duration: 1s;
+    }
+}
